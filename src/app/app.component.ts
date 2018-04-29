@@ -9,6 +9,7 @@ import { Contents } from './model/textContent';
     './style.css'
   ]
 })
+
 export class AppComponent {
 
   textContent: Contents;
@@ -48,8 +49,7 @@ export class AppComponent {
       footerRightBoxConditionText4: "1 Special Character like @#!"
     };
 
-
-    this.progress =[];
+    this.progress = [];
     this.count = 0;
     this.lowerCase = false;
     this.upperCase = false;
@@ -77,7 +77,6 @@ export class AppComponent {
 
     this.review = this.reviews[this.count];
 
-
   }
 
   ngOnInit() {
@@ -99,12 +98,13 @@ export class AppComponent {
     } else {
       x.type = "password";
     }
+
   }
 
   // REST API Call to get response back from backend
-  makeAPICall() {
+  checkPasswordStrength() {
 
-    this.passwordService.makeAPICall(this.password).subscribe(response =>{
+    this.passwordService.checkPasswordStrength(this.password).subscribe((response: any) =>{
 
       this.upperCase = response.upperCase;
       this.lowerCase = response.lowerCase;
@@ -115,9 +115,10 @@ export class AppComponent {
       this.count = response.count;
       this.passwordLength = response.passLength;
 
-
       this.review = this.reviews[this.count];
 
     });
+
   }
+
 }
